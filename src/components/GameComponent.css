@@ -1,0 +1,20 @@
+.game-component {
+  background-color: #333;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  width: 100%;
+}
+
+.game-component h2 {
+  color: #61dafb;
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.game-component p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
