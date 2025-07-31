@@ -1,8 +1,36 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import './GameComponent.css';
+import TicketShop from './TicketShop';
+import GlobeMap from './GlobeMap';
+
+type Flight = {
+  id: string;
+  startCity: string;
+  endCity: string;
+  price: number;
+  duration: number;
+  startTime: number;
+}
+
+type City = {
+  name: string;
+  latitude: number;
+  longitude: number;
+  flights: Flight[];
+}
 
 type GameState = {
   time: number;
+  balance: number;
+
+  currentCity: string | null;
+  currentFlight: string | null;
+
+  cities: City[];
+  flightMap: Record<string, Flight>;
+
+  selectedCity: string | null;
+
   // other state fields
 };
 
@@ -28,7 +56,8 @@ export const GameComponent: React.FC<React.PropsWithChildren> = ({  }) => {
 
   return (
     <GameContext.Provider value={{ time }}>
-      <p>{time}</p>
+      <GlobeMap />
+      <TicketShop />
     </GameContext.Provider>
   );
 };

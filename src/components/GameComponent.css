@@ -18,3 +18,15 @@
   line-height: 1.6;
   opacity: 0.9;
 }
+
+.globe-map {
+  width: 70%;
+  height: 100%;
+  background-color: #054625;
+}
+
+.ticket-shop {
+  width: 30%;
+  height: 100%;
+  background-color: #1c1a81;
+}
