@@ -2,36 +2,19 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 import './GameComponent.css';
 import TicketShop from './TicketShop';
 import GlobeMap from './GlobeMap';
+import type {GameState} from '../gameTick.ts';
+import gameTick from '../gameTick.ts';
 
-type Flight = {
-  id: string;
-  startCity: string;
-  endCity: string;
-  price: number;
-  duration: number;
-  startTime: number;
-}
 
-type City = {
-  name: string;
-  latitude: number;
-  longitude: number;
-  flights: Flight[];
-}
-
-type GameState = {
-  time: number;
-  balance: number;
-
-  currentCity: string | null;
-  currentFlight: string | null;
-
-  cities: City[];
-  flightMap: Record<string, Flight>;
-
-  selectedCity: string | null;
-
-  // other state fields
+let initialState: GameState = {
+  time: 0,
+  balance: 1000,
+  currentCity: "London",
+  currentFlight: null,
+  ticketedFlights: [],
+  cities: [],
+  flightMap: {},
+  selectedCity: null,
 };
 
 const GameContext = createContext<GameState | undefined>(undefined);
@@ -43,19 +26,18 @@ export const useGameState = () => {
 };
 
 export const GameComponent: React.FC<React.PropsWithChildren> = ({  }) => {
-  const [time, setTime] = useState(0);
+  const [state, setState] = useState<GameState | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime((prevTime) => prevTime + 1);
-      // update other global game states here
+      setState(gameTick);
     }, 1000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <GameContext.Provider value={{ time }}>
+    <GameContext.Provider value={state}>
       <GlobeMap />
       <TicketShop />
     </GameContext.Provider>
