@@ -26,7 +26,7 @@ export const useGameState = () => {
 };
 
 export const GameComponent: React.FC<React.PropsWithChildren> = ({  }) => {
-  const [state, setState] = useState<GameState | null>(null);
+  const [state, setState] = useState<GameState>(initialState);
 
   useEffect(() => {
     const interval = setInterval(() => {

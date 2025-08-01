@@ -1,3 +1,7 @@
+import citiesWithRoutes from './cities_with_routes.json';
+
+// In game data types
+
 type Flight = {
     id: string;
     startCity: string;
@@ -15,7 +19,7 @@ type Flight = {
   }
   
   type GameState = {
-    time: number;
+    time: number; //In-universe minutes
     balance: number;
   
     currentCity: string | null;
@@ -31,6 +35,55 @@ type Flight = {
   
     // other state fields
   };
+
+const initializeGameState = (startCity: string): GameState => {
+    const cities: City[] = [];
+    const flightMap: Record<string, Flight> = {};
+
+    for(const cityData of citiesWithRoutes) {
+        const city: City = {
+            name: cityData.name,
+            latitude: cityData.latitude,
+            longitude: cityData.longitude,
+            flights: []
+        };
+        cities.push(city);
+
+        for(const route of cityData.connections) {
+            const flightId = `${city.name}-${route.destination}-${route.departure_time}`;
+
+            //TODO this can get more sophisticated
+            let price = route.distance * 0.1;
+            //500 km/h, but add 15 minutes for taxiing
+            let duration = (route.distance / 500 * 60) + 15;
+
+            const flight: Flight = {
+                id: flightId,
+                startCity: city.name,
+                endCity: route.destination,
+                price: price,
+                duration: duration,
+                startTime: route.departure_time
+            };
+            city.flights.push(flight);
+            flightMap[flightId] = flight;
+
+            //TODO generate extra copies of this flight for later days
+        }
+    }
+
+    return {
+        time: 0,
+        balance: 1000,
+        currentCity: startCity,
+        currentFlight: null,
+        ticketedFlights: [],
+        cities,
+        flightMap,
+        selectedCity: null
+    };
+}
+
 
 const gameTick = (state: GameState): GameState => {
     // Update time
