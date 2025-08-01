@@ -1,0 +1,314 @@
+[
+    {
+        "name": "London",
+        "country": "United Kingdom",
+        "latitude": 51.5074,
+        "longitude": -0.1278,
+    },
+    {
+        "name": "New York",
+        "country": "United States",
+        "latitude": 40.7128,
+        "longitude": -74.0060,
+    },
+    {
+        "name": "Istanbul",
+        "country": "Turkey",
+        "latitude": 41.0082,
+        "longitude": 28.9784,
+    }
+    {
+        "name": "Tokyo",
+        "country": "Japan",
+        "latitude": 35.6762,
+        "longitude": 139.6503,
+    },
+    {
+        "name": "Paris",
+        "country": "France",
+        "latitude": 48.8566,
+        "longitude": 2.3522,
+    },
+    {
+        "name": "Atlanta",
+        "country": "United States",
+        "latitude": 33.7490,
+        "longitude": -84.3880,
+    },
+    {
+        "name": "Los Angeles",
+        "country": "United States",
+        "latitude": 34.0522,
+        "longitude": -118.2437,
+    },
+    {
+        "name": "Dallas",
+        "country": "United States",
+        "latitude": 32.7767,
+        "longitude": -96.7970,
+    },
+    {
+        "name": "Shanghai",
+        "country": "China",
+        "latitude": 31.2304,
+        "longitude": 121.4737,
+    },
+    {
+        "name": "Chicago",
+        "country": "United States",
+        "latitude": 41.8781,
+        "longitude": -87.6298
+    },
+    {
+        "name": "Miami",
+        "country": "United States",
+        "latitude": 25.7617,
+        "longitude": -80.1918
+    },
+    {
+        "name": "Beijing",
+        "country": "China",
+        "latitude": 39.9042,
+        "longitude": 116.4074
+    },
+    {
+        "name": "Dubai",
+        "country": "United Arab Emirates",
+        "latitude": 25.276987,
+        "longitude": 55.296249
+    },
+    {
+        "name": "Seoul",
+        "country": "South Korea",
+        "latitude": 37.5665,
+        "longitude": 126.9780
+    },
+    {
+        "name": "Bangkok",
+        "country": "Thailand",
+        "latitude": 13.7563,
+        "longitude": 100.5018
+    },
+    {
+        "name": "Denver",
+        "country": "United States",
+        "latitude": 39.7392,
+        "longitude": -104.9903
+    },
+    {
+        "name": "Washington D.C.",
+        "country": "United States",
+        "latitude": 38.9072,
+        "longitude": -77.0369
+    },
+    {
+        "name": "Sao Paulo",
+        "country": "Brazil",
+        "latitude": -23.5505,
+        "longitude": -46.6333
+    },
+    {
+        "name": "Chengdu",
+        "country": "China",
+        "latitude": 30.5728,
+        "longitude": 104.0668
+    },
+    {
+        "name": "San Francisco",
+        "country": "United States",
+        "latitude": 37.7749,
+        "longitude": -122.4194
+    },
+    {
+        "name": "Delhi",
+        "country": "India",
+        "latitude": 28.7041,
+        "longitude": 77.1025
+    },
+    {
+        "name": "Moscow",
+        "country": "Russia",
+        "latitude": 55.7558,
+        "longitude": 37.6173
+    },
+    {
+        "name": "Guangzhou",
+        "country": "China",
+        "latitude": 23.1291,
+        "longitude": 113.2644
+    },
+    {
+        "name": "Amsterdam",
+        "country": "Netherlands",
+        "latitude": 52.3676,
+        "longitude": 4.9041
+    },
+    {
+        "name": "Frankfurt",
+        "country": "Germany",
+        "latitude": 50.1109,
+        "longitude": 8.6821
+    },
+    {
+        "name": "Orlando",
+        "country": "United States",
+        "latitude": 28.5383,
+        "longitude": -81.3792
+    },
+    {
+        "name": "Madrid",
+        "country": "Spain",
+        "latitude": 40.4168,
+        "longitude": -3.7038
+    },
+    {
+        "name": "Houston",
+        "country": "United States",
+        "latitude": 29.7604,
+        "longitude": -95.3698
+    },
+    {
+        "name": "Singapore",
+        "country": "Singapore",
+        "latitude": 1.3521,
+        "longitude": 103.8198
+    },
+    {
+        "name": "Las Vegas",
+        "country": "United States",
+        "latitude": 36.1699,
+        "longitude": -115.1398
+    },
+    {
+        "name": "Charlotte",
+        "country": "United States",
+        "latitude": 35.2271,
+        "longitude": -80.8431
+    },
+    {
+        "name": "Jakarta",
+        "country": "Indonesia",
+        "latitude": -6.2088,
+        "longitude": 106.8456
+    },
+    {
+        "name": "Shenzhen",
+        "country": "China",
+        "latitude": 22.5431,
+        "longitude": 114.0579
+    },
+    {
+        "name": "Mexico City",
+        "country": "Mexico",
+        "latitude": 19.4326,
+        "longitude": -99.1332
+    },
+    {
+        "name": "Barcelona",
+        "country": "Spain",
+        "latitude": 41.3851,
+        "longitude": 2.1734
+    },
+    {
+        "name": "Mumbai",
+        "country": "India",
+        "latitude": 19.0760,
+        "longitude": 72.8777
+    },
+    {
+        "name": "Milan",
+        "country": "Italy",
+        "latitude": 45.4642,
+        "longitude": 9.1900
+    },
+    {
+        "name": "Seattle",
+        "country": "United States",
+        "latitude": 47.6062,
+        "longitude": -122.3321
+    },
+    {
+        "name": "Phoenix",
+        "country": "United States",
+        "latitude": 33.4484,
+        "longitude": -112.0740
+    },
+    {
+        "name": "Kuala Lumpur",
+        "country": "Malaysia",
+        "latitude": 3.1390,
+        "longitude": 101.6869
+    },
+    {
+        "name": "Toronto",
+        "country": "Canada",
+        "latitude": 43.6511,
+        "longitude": -79.3837
+    },
+    {
+        "name": "Manila",
+        "country": "Philippines",
+        "latitude": 14.5995,
+        "longitude": 120.9842
+    },
+    {
+        "name": "Doha",
+        "country": "Qatar",
+        "latitude": 25.276987,
+        "longitude": 51.520008
+    },
+    {
+        "name": "Bogota",
+        "country": "Colombia",
+        "latitude": 4.7110,
+        "longitude": -74.0721
+    },
+    {
+        "name": "Chongqing",
+        "country": "China",
+        "latitude": 29.5630,
+        "longitude": 106.5516
+    },
+    {
+        "name": "Rome",
+        "country": "Italy",
+        "latitude": 41.9028,
+        "longitude": 12.4964
+    },
+    {
+        "name": "Jeddah",
+        "country": "Saudi Arabia",
+        "latitude": 21.4858,
+        "longitude": 39.1925
+    },
+    {
+        "name": "Boston",
+        "country": "United States",
+        "latitude": 42.3601,
+        "longitude": -71.0589
+    },
+    {
+        "name": "Kunming",
+        "country": "China",
+        "latitude": 25.0389,
+        "longitude": 102.7183
+    },
+    {
+        "name": "Osaka",
+        "country": "Japan",
+        "latitude": 34.6937,
+        "longitude": 135.5023
+    },
+    {
+        "name": "Xi'an",
+        "country": "China",
+        "latitude": 34.3416,
+        "longitude": 108.9398
+    },
+    {
+        "name": "Hangzhou",
+        "country": "China",
+        "latitude": 30.2741,
+        "longitude": 120.1551
+    }
+]
