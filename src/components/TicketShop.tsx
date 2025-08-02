@@ -35,9 +35,11 @@ export const TicketShop: React.FC<{ gameState: GameState; updateGameState: (newS
 
     const ticketElements = Object.keys(flightsByDestination).map((destination, index) => (
         <div key={index} className="destination-group">
-            <p>Destination: {destination}</p>
-            <p>Cost: ${flightsByDestination[destination][0].price}</p>
-            <p>Duration: {durationDisplayString(flightsByDestination[destination][0].duration)}</p>
+            <div className="destination-info">
+                <div className="destination-name">{destination}</div>
+                <div className="destination-cost">${flightsByDestination[destination][0].price}</div>
+                <div className="destination-duration">{durationDisplayString(flightsByDestination[destination][0].duration)}</div>
+            </div>
             <div className="flights">
                 {flightsByDestination[destination].map(flight => (
                     <div key={flight.id} className="flight">

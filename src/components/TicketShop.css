@@ -26,7 +26,34 @@
     padding: 15px;
     border: 1px solid #012d30;
     border-radius: 4px;
-    background: #35a7a7;
+    background: #217a7a;
+}
+
+.destination-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 15px;
+}
+
+.destination-name,
+.destination-cost,
+.destination-duration {
+    flex: 1;
+    font-weight: bold;
+    text-align: center;
+    background: #3c2396;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.destination-cost {
+    color: #ffcc00;
+}
+
+.destination-duration {
+    color: #0fac0f;
 }
 
 .flights {
@@ -39,10 +66,10 @@
 }
 
 .flight button {
-    padding: 8px 16px;
-    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border: 1px solid #5f530e;
     border-radius: 4px;
-    background: white;
+    background: #ffcc00;
     cursor: pointer;
     transition: background-color 0.2s;
 }
