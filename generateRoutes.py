@@ -101,9 +101,9 @@ if __name__ == "__main__":
             connections.append({
                 'destination': connected_city,
                 'distance': distances[city_name_to_index[city['name']]][city_name_to_index[connected_city]],
-                'departure_time': floor(i * 3600 / len(city['connections']))
+                'departure_time': floor(i * 1440 / len(city['connections']))
             })
         city['connections'] = connections
 
-    with open('cities_with_routes.json', 'w') as outfile:
+    with open('src/cities_with_routes.json', 'w') as outfile:
         json.dump(cities_data, outfile, indent=4)

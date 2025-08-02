@@ -1,5 +1,19 @@
 import citiesWithRoutes from './cities_with_routes.json';
 
+export const clockDisplayString = (time: number): string => {
+    const days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    const dayIndex = Math.floor(time / (24 * 60)) % 5; // 5 days in the game
+    const hours = Math.floor(time / 60) % 24;
+    const minutes = time % 60;
+    return `${days[dayIndex]} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+}
+
+export const durationDisplayString = (time: number): string => {
+    const hours = Math.floor(time / 60);
+    const minutes = Math.floor(time % 60);
+    return `${hours}h ${minutes}m`;
+}
+
 // In game data types
 
 type Flight = {
@@ -36,7 +50,7 @@ type Flight = {
     // other state fields
   };
 
-const initializeGameState = (startCity: string): GameState => {
+export const initializeGameState = (startCity: string): GameState => {
     const cities: City[] = [];
     const flightMap: Record<string, Flight> = {};
 
@@ -50,25 +64,28 @@ const initializeGameState = (startCity: string): GameState => {
         cities.push(city);
 
         for(const route of cityData.connections) {
-            const flightId = `${city.name}-${route.destination}-${route.departure_time}`;
 
             //TODO this can get more sophisticated
             let price = route.distance * 0.1;
             //500 km/h, but add 15 minutes for taxiing
             let duration = (route.distance / 500 * 60) + 15;
 
-            const flight: Flight = {
-                id: flightId,
-                startCity: city.name,
-                endCity: route.destination,
-                price: price,
-                duration: duration,
-                startTime: route.departure_time
-            };
-            city.flights.push(flight);
-            flightMap[flightId] = flight;
+            for(let day = 0; day < 5; day++) {
+                const departure = day * 24 * 60 + route.departure_time; // Departure time in minutes from the start of the game
+                const flightId = `${city.name}-${route.destination}-${departure}`;
 
-            //TODO generate extra copies of this flight for later days
+                const flight: Flight = {
+                    id: flightId,
+                    startCity: city.name,
+                    endCity: route.destination,
+                    price: price,
+                    duration: duration,
+                    startTime: departure
+                };
+                city.flights.push(flight);
+                flightMap[flightId] = flight;
+            }
+
         }
     }
 
@@ -80,7 +97,7 @@ const initializeGameState = (startCity: string): GameState => {
         ticketedFlights: [],
         cities,
         flightMap,
-        selectedCity: null
+        selectedCity: startCity
     };
 }
 

@@ -4,29 +4,12 @@ import TicketShop from './TicketShop';
 import GlobeMap from './GlobeMap';
 import type {GameState} from '../gameTick';
 import gameTick from '../gameTick';
+import { initializeGameState } from '../gameTick';
+import {GameContext} from '../gameContext';
 
-
-let initialState: GameState = {
-  time: 0,
-  balance: 1000,
-  currentCity: "London",
-  currentFlight: null,
-  ticketedFlights: [],
-  cities: [],
-  flightMap: {},
-  selectedCity: null,
-};
-
-const GameContext = createContext<GameState | undefined>(undefined);
-
-export const useGameState = () => {
-  const context = useContext(GameContext);
-  if (!context) throw new Error('useGameState called in wrong place');
-  return context;
-};
 
 export const GameComponent: React.FC<React.PropsWithChildren> = ({  }) => {
-  const [state, setState] = useState<GameState>(initialState);
+  const [state, setState] = useState<GameState>(initializeGameState("London"));
 
   useEffect(() => {
     const interval = setInterval(() => {
