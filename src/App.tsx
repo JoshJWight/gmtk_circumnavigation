@@ -4,6 +4,7 @@ import GameComponent from './components/GameComponent';
 
 function App(): JSX.Element {
   const [state, setState] = useState<string>("menu");
+  const [resultMessage, setResultMessage] = useState<string>("");
   if(state === "menu") {
     return (
       <div className="App">
@@ -26,7 +27,7 @@ function App(): JSX.Element {
     return (
       <div className="App">
         <main>
-          <GameComponent />
+          <GameComponent setAppState={setState} setResultMessage={setResultMessage}/>
         </main>
       </div>
     );
@@ -35,6 +36,7 @@ function App(): JSX.Element {
       <div className="App">
         <main>
           <h1>Game Over</h1>
+          <p>{resultMessage}</p>
           <button onClick={() => setState("menu")}>Return to Menu</button>
         </main>
       </div>
@@ -43,7 +45,8 @@ function App(): JSX.Element {
     return (
       <div className="App">
         <main>
-          <h1>Congratulations! You Win!</h1>
+          <h1>Successful Circumnavigation!</h1>
+          <p>{resultMessage}</p>
           <button onClick={() => setState("menu")}>Return to Menu</button>
         </main>
       </div>
@@ -54,6 +57,7 @@ function App(): JSX.Element {
         <main>
           <h1>How to Play</h1>
           <p>Your goal in this game is to circumnavigate the world and return to the city you started in.</p>
+          <p>Both westwards and eastwards circumnavigations are valid.</p>
           <p>Click a city on the map to open its shop where you can buy flights.</p>
           <p>Click a time for a flight in the shop to buy it.</p>
           <p>When one of your booked flights departs, you will automatically take it.</p>

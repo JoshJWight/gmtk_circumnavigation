@@ -2,7 +2,6 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 import './TicketShop.css';
 import type {GameState} from '../gameTick';
 import {durationDisplayString, clockDisplayString, shortClockDisplayString} from '../gameTick';
-import { useGameState } from '../gameContext';
 
 export const TicketShop: React.FC<{ gameState: GameState; updateGameState: (newState: Partial<GameState>) => void }> = ({ gameState, updateGameState}) => {
 

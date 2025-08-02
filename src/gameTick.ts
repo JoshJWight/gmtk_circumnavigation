@@ -56,6 +56,12 @@ export type GameState = {
     selectedCity: string | null;
   
     simSpeed: number; //Number of minutes per tick
+
+    deadline: number;
+    cumulativeLongitude: number;
+    startCity: string; //The city where the player started the game
+    startTime: number; //The time when the game started (in minutes)
+    startBudget: number; //The budget at the start of the game
   };
 
 export const initializeGameState = (startCity: string): GameState => {
@@ -102,8 +108,11 @@ export const initializeGameState = (startCity: string): GameState => {
         }
     }
 
+    const startTime = 18 * 60; // 6 PM UK time on Wednesday
+    const deadline = startTime + (4 * 24 * 60); // 4 days later in minutes
+
     return {
-        time: 18 * 60, //The jam started at 6pm UK time on wednesday
+        time: startTime, //The jam started at 6pm UK time on wednesday
         balance: 5000,
         currentCity: startCity,
         currentFlight: null,
@@ -111,16 +120,22 @@ export const initializeGameState = (startCity: string): GameState => {
         cities,
         flightMap,
         selectedCity: startCity,
-        simSpeed: 1
+        simSpeed: 1,
+        deadline: deadline , //4 days in minutes
+        cumulativeLongitude: 0, //This will be used to determine if the player has circumnavigated the globe
+        startCity: startCity,
+        startTime: startTime,
+        startBudget: 5000
     };
 }
 
 
-const gameTick = (state: GameState): GameState => {
+const gameTick = (state: GameState, setAppState:(newState: string) => void, setResultMessage:(newMessage: string) => void): GameState => {
     // Update time
     const newTime = state.time + state.simSpeed;
     let newCurrentFlight = state.currentFlight;
     let newCurrentCity = state.currentCity;
+    let newCumulativeLongitude = state.cumulativeLongitude;
 
     // Should the player start a flight?
     if(newCurrentFlight === null) {
@@ -137,6 +152,19 @@ const gameTick = (state: GameState): GameState => {
     if(newCurrentFlight !== null) {
         const flight = state.flightMap[newCurrentFlight];
         if(newTime >= flight.startTime + flight.duration) {
+            const startCity = state.cities.find(city => city.name === flight.startCity);
+            const endCity = state.cities.find(city => city.name === flight.endCity);
+            if(startCity && endCity) {
+                let longitudeChange = endCity.longitude;
+                //Assuming that there is no single route covering more than 180 degrees of longitude...
+                if (longitudeChange < -180) {
+                    longitudeChange += 360; // Normalize longitude to be within -180 to 180
+                } else if(longitudeChange > 180) {
+                    longitudeChange -= 360; // Normalize longitude to be within -180 to 180
+                }
+                newCumulativeLongitude += longitudeChange;
+            }
+            
             newCurrentFlight = null;
             newCurrentCity = flight.endCity;
         }
@@ -148,12 +176,35 @@ const gameTick = (state: GameState): GameState => {
         return flight.startTime > newTime;
     });
 
+    const currentCity = state.cities.find((city) => city.name === state.currentCity)
+      const anyFlightsAffordable = currentCity && currentCity.flights.some(
+        (flight) => flight.startTime > newTime && flight.price <= state.balance
+      );
+
+    if((newCumulativeLongitude >= 300 || newCumulativeLongitude <= -300)) {
+        let timeTaken = newTime - state.startTime;
+        let moneyTaken = state.startBudget - state.balance;
+        setResultMessage(`Completed your journey in ${durationDisplayString(timeTaken)} for $${Math.round(moneyTaken)}.`);
+        setAppState("win");
+    }
+    else if(newTime >= state.deadline) {
+        console.log("Out of time");
+        setResultMessage(`Ran out of time in ${newCurrentCity} with $${state.balance} left.`);
+        setAppState("lose");
+    }
+    else if(!anyFlightsAffordable && state.currentFlight === null) {
+        console.log("Out of money");
+        setResultMessage(`Can't afford any flights out of ${newCurrentCity}.`);
+        setAppState("lose");
+    }
+
     return {
         ...state,
         time: newTime,
         currentFlight: newCurrentFlight,
         currentCity: newCurrentCity,
-        ticketedFlights: newTicketedFlights
+        ticketedFlights: newTicketedFlights,
+        cumulativeLongitude: newCumulativeLongitude,
     };
 }
 

@@ -4,11 +4,10 @@ import TicketShop from './TicketShop';
 import GlobeMap from './GlobeMap';
 import type {GameState} from '../gameTick';
 import gameTick from '../gameTick';
-import { initializeGameState } from '../gameTick';
-import {GameContext} from '../gameContext';
+import { initializeGameState, durationDisplayString } from '../gameTick';
 
 
-export const GameComponent: React.FC<React.PropsWithChildren> = ({  }) => {
+export const GameComponent: React.FC<{setAppState:(newState: string) => void, setResultMessage:(newMessage: string) => void}> = ({setAppState, setResultMessage}) => {
   const [state, setState] = useState<GameState>(initializeGameState("London"));
 
   // Callback to update the GameState
@@ -18,7 +17,7 @@ export const GameComponent: React.FC<React.PropsWithChildren> = ({  }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setState(prevState => gameTick(prevState));
+      setState(prevState => gameTick(prevState, setAppState, setResultMessage));
     }, 100);
 
     return () => clearInterval(interval);
