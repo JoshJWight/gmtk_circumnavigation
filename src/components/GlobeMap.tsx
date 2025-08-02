@@ -53,10 +53,14 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         }
     }
 
-    
+    const setSimSpeed = (speed: number) => {
+        updateGameState({ simSpeed: speed });
+    }
     
     return (
       <div className="globe-map">
+        <button onClick={() => setSimSpeed(1)}>1x Speed</button>
+        <button onClick={() => setSimSpeed(5)}>5x Speed</button>
         <p>Map</p>
         <p>{clockDisplayString(gameState.time)}</p>
         <p>{status}</p>

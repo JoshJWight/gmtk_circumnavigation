@@ -53,7 +53,7 @@ export type GameState = {
   
     selectedCity: string | null;
   
-    // other state fields
+    simSpeed: number; //Number of minutes per tick
   };
 
 export const initializeGameState = (startCity: string): GameState => {
@@ -108,14 +108,15 @@ export const initializeGameState = (startCity: string): GameState => {
         ticketedFlights: [],
         cities,
         flightMap,
-        selectedCity: startCity
+        selectedCity: startCity,
+        simSpeed: 1
     };
 }
 
 
 const gameTick = (state: GameState): GameState => {
     // Update time
-    const newTime = state.time + 1;
+    const newTime = state.time + state.simSpeed;
     let newCurrentFlight = state.currentFlight;
     let newCurrentCity = state.currentCity;
 
@@ -123,7 +124,7 @@ const gameTick = (state: GameState): GameState => {
     if(newCurrentFlight === null) {
         for(const flightId of state.ticketedFlights) {
             const flight = state.flightMap[flightId];
-            if(flight.startTime == newTime && flight.startCity === newCurrentCity) {
+            if(flight.startTime <= newTime && flight.startCity === newCurrentCity) {
                 newCurrentFlight = flightId;
                 break;
             }
