@@ -28,12 +28,16 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         );
     })
 
-    let status = '';
+    let statusLine1 = '';
+    let statusLine2 = '';
+    let statusLine3 = '';
     if(gameState.currentFlight) {
         const flight = gameState.flightMap[gameState.currentFlight];
-        status = `Flying to ${flight.endCity} (${durationDisplayString(flight.startTime + flight.duration - gameState.time)} left, arrive at ${clockDisplayString(flight.startTime + flight.duration)})`;
+        statusLine1 = `Flying to ${flight.endCity} from ${flight.startCity}`;
+        statusLine2 = `Arrive at ${clockDisplayString(flight.startTime + flight.duration)} (${durationDisplayString(flight.startTime + flight.duration - gameState.time)})`;
     }
     else{
+        statusLine1 = `In ${gameState.currentCity}`;
         let nextFlight: Flight | null = null;
         for(const flightId of gameState.ticketedFlights) {
             const flight = gameState.flightMap[flightId];
@@ -44,9 +48,10 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
             }
         }
         if(nextFlight) {
-            status = `In ${gameState.currentCity}, waiting for flight to ${nextFlight.endCity} at ${clockDisplayString(nextFlight.startTime)} (${durationDisplayString(nextFlight.startTime - gameState.time)} until departure, arrives at ${clockDisplayString(nextFlight.startTime + nextFlight.duration)})`;
+            statusLine2 = `Flight to ${nextFlight.endCity} departs ${clockDisplayString(nextFlight.startTime)} (${durationDisplayString(nextFlight.startTime - gameState.time)})`;
+            statusLine3 = `Arrives ${clockDisplayString(nextFlight.startTime + nextFlight.duration)}`;
         } else {
-            status = `Waiting in ${gameState.currentCity} with no flight booked yet`;
+            statusLine2 = `No flight booked yet`;
         }
     }
 
@@ -70,7 +75,11 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
             <button onClick={() => setSimSpeed(5)} className={gameState.simSpeed === 5 ? 'active' : ''}>5x Speed</button>
           </div>
           <div className="game-time">{clockDisplayString(gameState.time)}</div>
-          <div className="game-status">{status}</div>
+          <div className="game-status">
+            <p>{statusLine1}</p>
+            <p>{statusLine2}</p>
+            <p>{statusLine3}</p>
+          </div>
         </div>
         
         <div className="globe-overlay-top-right">
