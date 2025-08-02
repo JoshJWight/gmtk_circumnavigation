@@ -6,7 +6,7 @@ import { useGameState } from '../gameContext';
 
 export const TicketShop: React.FC<{ gameState: GameState; updateGameState: (newState: Partial<GameState>) => void }> = ({ gameState, updateGameState}) => {
 
-    const currentCityFlights = gameState.cities.find(city => city.name === gameState.currentCity)?.flights || [];
+    const currentCityFlights = gameState.cities.find(city => city.name === gameState.selectedCity)?.flights || [];
     const filteredFlights = currentCityFlights.filter(
         flight => flight.startTime > gameState.time && flight.startTime <= gameState.time + 1440
     );
