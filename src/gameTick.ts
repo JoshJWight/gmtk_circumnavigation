@@ -103,7 +103,7 @@ export const initializeGameState = (startCity: string): GameState => {
     }
 
     return {
-        time: 0,
+        time: 18 * 60, //The jam started at 6pm UK time on wednesday
         balance: 5000,
         currentCity: startCity,
         currentFlight: null,
