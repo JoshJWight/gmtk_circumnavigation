@@ -12,6 +12,19 @@ type MarkerData = {
     cityName: string;
 };
 
+type ArcData = {
+    startLat: number;
+    startLng: number;
+    endLat: number;
+    endLng: number;
+    color: string;
+};
+
+type LabelData = {
+    latitude: number;
+    longitude: number;
+};
+
 export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newState: Partial<GameState>) => void }> = ({ gameState, updateGameState}) => {
 
     const selectCity = (cityName: string) => {
@@ -66,6 +79,30 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         cityName: city.name
     }));
 
+    let arcsData:ArcData[] = [];
+    for(let i = 0; i < baseCityData.length; i++) {
+        const city = baseCityData[i];
+        for(let j=0; j<city.connections.length; j++) {
+            const connection = city.connections[j];
+            if(connection.destination < city.name) continue; // Avoid duplicate arcs
+            const destinationCity = baseCityData.find(city => city.name === connection.destination);
+            if (!destinationCity) continue;
+            arcsData.push({
+                startLat: city.latitude,
+                startLng: city.longitude,
+                endLat: destinationCity.latitude,
+                endLng: destinationCity.longitude,
+                color: "yellow"
+            });
+        }
+    }
+
+    let playerLocation: LabelData = {
+        latitude: gameState.currentCity ? baseCityData.find(city => city.name === gameState.currentCity)?.latitude || 0 : 0,
+        longitude: gameState.currentCity ? baseCityData.find(city => city.name === gameState.currentCity)?.longitude || 0 : 0
+    }
+
+    const labelsData: LabelData[] = [playerLocation];
         
     return (
       <div className="globe-map">
@@ -138,6 +175,13 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
                 return el;
             }}
             htmlElementVisibilityModifier={(el, isVisible) => el.style.opacity = isVisible ? '1' : '0'}
+            arcsData={arcsData}
+            arcAltitude={0.08}
+            //labelsData={labelsData}
+            //labelLat={playerLocation.latitude}
+            //labelLng={playerLocation.longitude}
+            //labelDotRadius={50}
+            //labelColor={"red"}
             />
         </div>
       </div>
