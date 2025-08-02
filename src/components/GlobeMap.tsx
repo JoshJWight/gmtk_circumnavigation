@@ -75,6 +75,7 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         
         <div className="globe-overlay-top-right">
           <div className="current-tickets">
+                <h4>Balance: ${gameState.balance}</h4>
                 <h4>Tickets Booked:</h4>
                 {currentTickets}
           </div>

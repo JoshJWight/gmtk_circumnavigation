@@ -56,10 +56,7 @@ export const TicketShop: React.FC<{ gameState: GameState; updateGameState: (newS
     return (
       <div className="ticket-shop">
         <div className="ticket-shop-header">
-          <h2>Buy Tickets From {gameState.selectedCity}</h2>
-          <div className="balance">
-            <p>Balance: ${Math.round(gameState.balance)}</p>
-          </div>
+          <h2>Flights From {gameState.selectedCity}</h2>
         </div>
         <div className="ticket-shop-content">
           <div className="tickets">
