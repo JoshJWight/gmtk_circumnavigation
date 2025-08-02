@@ -24,12 +24,6 @@
         "longitude": 139.6503
     },
     {
-        "name": "Paris",
-        "country": "France",
-        "latitude": 48.8566,
-        "longitude": 2.3522
-    },
-    {
         "name": "Atlanta",
         "country": "United States",
         "latitude": 33.7490,
@@ -96,28 +90,10 @@
         "longitude": -104.9903
     },
     {
-        "name": "Washington D.C.",
-        "country": "United States",
-        "latitude": 38.9072,
-        "longitude": -77.0369
-    },
-    {
         "name": "Sao Paulo",
         "country": "Brazil",
         "latitude": -23.5505,
         "longitude": -46.6333
-    },
-    {
-        "name": "Chengdu",
-        "country": "China",
-        "latitude": 30.5728,
-        "longitude": 104.0668
-    },
-    {
-        "name": "San Francisco",
-        "country": "United States",
-        "latitude": 37.7749,
-        "longitude": -122.4194
     },
     {
         "name": "Delhi",
@@ -138,34 +114,10 @@
         "longitude": 113.2644
     },
     {
-        "name": "Amsterdam",
-        "country": "Netherlands",
-        "latitude": 52.3676,
-        "longitude": 4.9041
-    },
-    {
-        "name": "Frankfurt",
-        "country": "Germany",
-        "latitude": 50.1109,
-        "longitude": 8.6821
-    },
-    {
-        "name": "Orlando",
-        "country": "United States",
-        "latitude": 28.5383,
-        "longitude": -81.3792
-    },
-    {
         "name": "Madrid",
         "country": "Spain",
         "latitude": 40.4168,
         "longitude": -3.7038
-    },
-    {
-        "name": "Houston",
-        "country": "United States",
-        "latitude": 29.7604,
-        "longitude": -95.3698
     },
     {
         "name": "Singapore",
@@ -174,28 +126,10 @@
         "longitude": 103.8198
     },
     {
-        "name": "Las Vegas",
-        "country": "United States",
-        "latitude": 36.1699,
-        "longitude": -115.1398
-    },
-    {
-        "name": "Charlotte",
-        "country": "United States",
-        "latitude": 35.2271,
-        "longitude": -80.8431
-    },
-    {
         "name": "Jakarta",
         "country": "Indonesia",
         "latitude": -6.2088,
         "longitude": 106.8456
-    },
-    {
-        "name": "Shenzhen",
-        "country": "China",
-        "latitude": 22.5431,
-        "longitude": 114.0579
     },
     {
         "name": "Mexico City",
@@ -204,22 +138,10 @@
         "longitude": -99.1332
     },
     {
-        "name": "Barcelona",
-        "country": "Spain",
-        "latitude": 41.3851,
-        "longitude": 2.1734
-    },
-    {
         "name": "Mumbai",
         "country": "India",
         "latitude": 19.0760,
         "longitude": 72.8777
-    },
-    {
-        "name": "Milan",
-        "country": "Italy",
-        "latitude": 45.4642,
-        "longitude": 9.1900
     },
     {
         "name": "Seattle",
@@ -228,34 +150,10 @@
         "longitude": -122.3321
     },
     {
-        "name": "Phoenix",
-        "country": "United States",
-        "latitude": 33.4484,
-        "longitude": -112.0740
-    },
-    {
-        "name": "Kuala Lumpur",
-        "country": "Malaysia",
-        "latitude": 3.1390,
-        "longitude": 101.6869
-    },
-    {
-        "name": "Toronto",
-        "country": "Canada",
-        "latitude": 43.6511,
-        "longitude": -79.3837
-    },
-    {
         "name": "Manila",
         "country": "Philippines",
         "latitude": 14.5995,
         "longitude": 120.9842
-    },
-    {
-        "name": "Doha",
-        "country": "Qatar",
-        "latitude": 25.276987,
-        "longitude": 51.520008
     },
     {
         "name": "Bogota",
@@ -282,33 +180,94 @@
         "longitude": 39.1925
     },
     {
-        "name": "Boston",
+        "name": "Vienna",
+        "country": "Austria",
+        "latitude": 48.2082,
+        "longitude": 16.3738
+    },
+    {
+        "name": "Sydney",
+        "country": "Australia",
+        "latitude": -33.8688,
+        "longitude": 151.2093
+    },
+    {
+        "name": "Cairo",
+        "country": "Egypt",
+        "latitude": 30.0444,
+        "longitude": 31.2357
+    },
+    {
+        "name": "Johannesburg",
+        "country": "South Africa",
+        "latitude": -26.2041,
+        "longitude": 28.0473
+    },
+    {
+        "name": "Casablanca",
+        "country": "Morocco",
+        "latitude": 33.5731,
+        "longitude": -7.5898
+    },
+    {
+        "name": "Addis Ababa",
+        "country": "Ethiopia",
+        "latitude": 9.1450,
+        "longitude": 40.489673
+    },
+    {
+        "name": "Lagos",
+        "country": "Nigeria",
+        "latitude": 6.5244,
+        "longitude": 3.3792
+    },
+    {
+        "name": "Nairobi",
+        "country": "Kenya",
+        "latitude": -1.2864,
+        "longitude": 36.8172
+    },
+    {
+        "name": "Lima",
+        "country": "Peru",
+        "latitude": -12.0464,
+        "longitude": -77.0428
+    },
+    {
+        "name": "Santiago",
+        "country": "Chile",
+        "latitude": -33.4489,
+        "longitude": -70.6693
+    },
+    {
+        "name": "Almaty",
+        "country": "Kazakhstan",
+        "latitude": 43.2220,
+        "longitude": 76.8512
+    },
+    {
+        "name": "Perth",
+        "country": "Australia",
+        "latitude": -31.9505,
+        "longitude": 115.8605
+    },
+    {
+        "name": "Kolkata",
+        "country": "India",
+        "latitude": 22.5726,
+        "longitude": 88.3639
+    },
+    {
+        "name": "Honolulu",
         "country": "United States",
-        "latitude": 42.3601,
-        "longitude": -71.0589
+        "latitude": 21.3069,
+        "longitude": -157.8583
     },
     {
-        "name": "Kunming",
-        "country": "China",
-        "latitude": 25.0389,
-        "longitude": 102.7183
-    },
-    {
-        "name": "Osaka",
-        "country": "Japan",
-        "latitude": 34.6937,
-        "longitude": 135.5023
-    },
-    {
-        "name": "Xi'an",
-        "country": "China",
-        "latitude": 34.3416,
-        "longitude": 108.9398
-    },
-    {
-        "name": "Hangzhou",
-        "country": "China",
-        "latitude": 30.2741,
-        "longitude": 120.1551
+        "name": "Nadi",
+        "country": "Fiji",
+        "latitude": -17.7550,
+        "longitude": 177.4422
     }
+
 ]
