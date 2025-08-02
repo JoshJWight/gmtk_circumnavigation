@@ -186,16 +186,20 @@ const gameTick = (state: GameState, setAppState:(newState: string) => void, setR
         let moneyTaken = state.startBudget - state.balance;
         setResultMessage(`Completed your journey in ${durationDisplayString(timeTaken)} for $${Math.round(moneyTaken)}.`);
         setAppState("win");
+        return state; // Return current state to prevent further updates
     }
     else if(newTime >= state.deadline) {
         console.log("Out of time");
         setResultMessage(`Ran out of time in ${newCurrentCity} with $${state.balance} left.`);
         setAppState("lose");
+        return state; // Return current state to prevent further updates
+
     }
     else if(!anyFlightsAffordable && state.currentFlight === null) {
         console.log("Out of money");
         setResultMessage(`Can't afford any flights out of ${newCurrentCity}.`);
         setAppState("lose");
+        return state; // Return current state to prevent further updates
     }
 
     return {
