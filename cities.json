@@ -268,6 +268,18 @@
         "country": "Fiji",
         "latitude": -17.7550,
         "longitude": 177.4422
+    },
+    {
+        "name": "Papeete",
+        "country": "French Polynesia",
+        "latitude": -17.5516,
+        "longitude": -149.5585
+    },
+    {
+        "name": "Chennai",
+        "country": "India",
+        "latitude": 13.0827,
+        "longitude": 80.2707
     }
 
 ]
