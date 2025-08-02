@@ -2,8 +2,8 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 import './GameComponent.css';
 import TicketShop from './TicketShop';
 import GlobeMap from './GlobeMap';
-import type {GameState} from '../gameTick.ts';
-import gameTick from '../gameTick.ts';
+import type {GameState} from '../gameTick';
+import gameTick from '../gameTick';
 
 
 let initialState: GameState = {
