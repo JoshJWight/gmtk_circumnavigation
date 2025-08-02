@@ -8,7 +8,6 @@ import {durationDisplayString, clockDisplayString} from '../gameTick';
 type MarkerData = {
     lat: number;
     lng: number;
-    size: number;
     color: string;
     cityName: string;
 };
@@ -55,15 +54,9 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         updateGameState({ simSpeed: speed });
     }
 
-    const markerSvg = `<svg viewBox="-4 0 36 36">
-        <path fill="currentColor" d="M14,0 C21.732,0 28,5.641 28,12.6 C28,23.963 14,36 14,36 C14,36 0,24.064 0,12.6 C0,5.641 6.268,0 14,0 Z"></path>
-        <circle fill="black" cx="14" cy="14" r="7"></circle>
-    </svg>`;
-
     const gData: MarkerData[] = baseCityData.map(city => ({
         lat: city.latitude,
         lng: city.longitude,
-        size: 50,
         color: 'yellow',
         cityName: city.name
     }));
@@ -86,14 +79,42 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
             htmlElement={(d: object) => {
                 const markerData = d as MarkerData;
                 const el = document.createElement('div');
-                el.innerHTML = `<p>${markerData.cityName}</p>`;
+                el.innerHTML = `<div class="city-marker">${markerData.cityName}</div>`;
                 el.style.color = markerData.color;
-                el.style.width = `${markerData.size}px`;
+                el.style.width = `80px`;
+                el.style.height = `50px`;
                 el.style.transition = 'opacity 250ms';
+                el.style.display = 'flex';
+                el.style.alignItems = 'center';
+                el.style.justifyContent = 'center';
+                el.style.textAlign = 'center';
+                el.style.fontSize = '12px';
+                el.style.fontWeight = 'bold';
+                el.style.textShadow = '1px 1px 2px rgba(0,0,0,0.8)';
+                el.style.padding = '4px';
+                el.style.borderRadius = '4px';
+                el.style.backgroundColor = 'rgba(0,0,0,0.3)';
+                el.style.border = '1px solid rgba(255,255,255,0.3)';
 
                 el.style.setProperty('pointer-events', 'auto');
                 el.style.cursor = 'pointer';
-                el.onclick = () => selectCity(markerData.cityName);
+                
+                // Stable hover effects without transform
+                el.addEventListener('mouseenter', () => {
+                    el.style.backgroundColor = 'rgba(255,255,0,0.6)';
+                    el.style.borderColor = 'rgba(255,255,0,0.8)';
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    el.style.backgroundColor = 'rgba(0,0,0,0.3)';
+                    el.style.borderColor = 'rgba(255,255,255,0.3)';
+                });
+                
+                el.onclick = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    selectCity(markerData.cityName);
+                };
                 return el;
             }}
             htmlElementVisibilityModifier={(el, isVisible) => el.style.opacity = isVisible ? '1' : '0'}

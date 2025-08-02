@@ -8,3 +8,19 @@
   height: 100% !important;
   max-width: 100% !important;
 }
+
+.city-marker {
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  min-width: 100%;
+  min-height: 100%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative;
+}
+
+.city-marker:hover {
+  z-index: 1000;
+}
