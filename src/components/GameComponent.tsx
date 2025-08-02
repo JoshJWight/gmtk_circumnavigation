@@ -13,7 +13,7 @@ export const GameComponent: React.FC<React.PropsWithChildren> = ({  }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setState(gameTick);
+      setState(prevState => gameTick(prevState));
     }, 1000);
 
     return () => clearInterval(interval);

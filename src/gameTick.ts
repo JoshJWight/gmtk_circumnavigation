@@ -104,36 +104,43 @@ export const initializeGameState = (startCity: string): GameState => {
 
 const gameTick = (state: GameState): GameState => {
     // Update time
-    state.time += 1;
+    const newTime = state.time + 1;
+    let newCurrentFlight = state.currentFlight;
+    let newCurrentCity = state.currentCity;
 
     // Should the player start a flight?
-    if(state.currentFlight === null) {
+    if(newCurrentFlight === null) {
         for(const flightId of state.ticketedFlights) {
             const flight = state.flightMap[flightId];
-            if(flight.startTime == state.time && flight.startCity === state.currentCity) {
-                state.currentFlight = flightId;
+            if(flight.startTime == newTime && flight.startCity === newCurrentCity) {
+                newCurrentFlight = flightId;
                 break;
             }
         }
     }
 
     // Should the player finish a flight?
-    if(state.currentFlight !== null) {
-        const flight = state.flightMap[state.currentFlight];
-        if(flight.endCity === state.currentCity && state.time >= flight.startTime + flight.duration) {
-            state.currentFlight = null;
-            state.currentCity = flight.endCity;
+    if(newCurrentFlight !== null) {
+        const flight = state.flightMap[newCurrentFlight];
+        if(newTime >= flight.startTime + flight.duration) {
+            newCurrentFlight = null;
+            newCurrentCity = flight.endCity;
         }
     }
 
     // Remove ticketed flights that have already departed (the filter determines which ones we *keep*)
-    state.ticketedFlights = state.ticketedFlights.filter(flightId => {
+    const newTicketedFlights = state.ticketedFlights.filter(flightId => {
         const flight = state.flightMap[flightId];
-        return flight.startTime > state.time;
+        return flight.startTime > newTime;
     });
 
-
-    return state;
+    return {
+        ...state,
+        time: newTime,
+        currentFlight: newCurrentFlight,
+        currentCity: newCurrentCity,
+        ticketedFlights: newTicketedFlights
+    };
 }
 
 export default gameTick;
