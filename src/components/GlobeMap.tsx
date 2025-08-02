@@ -64,16 +64,26 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         
     return (
       <div className="globe-map">
-        <button onClick={() => setSimSpeed(1)}>1x Speed</button>
-        <button onClick={() => setSimSpeed(5)}>5x Speed</button>
-        <p>Map</p>
-        <p>{clockDisplayString(gameState.time)}</p>
-        <p>{status}</p>
-        {currentTickets}
+        <div className="globe-overlay-top-left">
+          <div className="sim-controls">
+            <button onClick={() => setSimSpeed(1)} className={gameState.simSpeed === 1 ? 'active' : ''}>1x Speed</button>
+            <button onClick={() => setSimSpeed(5)} className={gameState.simSpeed === 5 ? 'active' : ''}>5x Speed</button>
+          </div>
+          <div className="game-time">{clockDisplayString(gameState.time)}</div>
+          <div className="game-status">{status}</div>
+        </div>
+        
+        <div className="globe-overlay-top-right">
+          <div className="current-tickets">
+                <h4>Tickets Booked:</h4>
+                {currentTickets}
+          </div>
+        </div>
+        
         <div className="map-container">
             <Globe
-            width={1920 * 0.7}
-            height={1000}
+            width={window.innerWidth * 0.8}
+            height={window.innerHeight}
             globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg"
             htmlElementsData={gData}
             htmlElement={(d: object) => {
