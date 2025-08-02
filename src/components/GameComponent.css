@@ -19,6 +19,13 @@
   opacity: 0.9;
 }
 
+.game-container {
+  display: flex;
+  justify-content: space-between; /* Optional: Adjust spacing */
+  align-items: center; /* Optional: Align items vertically */
+  width: 100%; /* Optional: Ensure it spans the full width */
+}
+
 .globe-map {
   width: 70%;
   height: 100%;

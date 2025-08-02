@@ -4,17 +4,18 @@ import type {GameState, Flight} from '../gameTick';
 import {durationDisplayString, clockDisplayString} from '../gameTick';
 import { useGameState, GameContext } from '../gameContext';
 
-export const GlobeMap: React.FC<{ gameState: GameState, time:number }> = ({ gameState, time }) => {
-    useEffect(() => {
-        console.log('Map component updated');
-    }, [time]);
+export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newState: Partial<GameState>) => void }> = ({ gameState, updateGameState}) => {
+
+    const selectCity = (cityName: string) => {
+        updateGameState({ selectedCity: cityName });
+    }
 
     const cityButtons = gameState.cities.map((city, index) => (
         <button 
             key={index} 
             className={`city-button ${gameState.selectedCity === city.name ? 'selected' : ''}`}
             onClick={() => {
-                //TODO
+                selectCity(city.name);
             }}
         >
             {city.name}
@@ -37,16 +38,18 @@ export const GlobeMap: React.FC<{ gameState: GameState, time:number }> = ({ game
             }
         }
         if(nextFlight) {
-            status = `Waiting for flight to ${nextFlight.endCity} at ${clockDisplayString(nextFlight.startTime)} (${durationDisplayString(nextFlight.startTime - gameState.time)} left)`;
+            status = `In ${gameState.currentCity}, waiting for flight to ${nextFlight.endCity} at ${clockDisplayString(nextFlight.startTime)} (${durationDisplayString(nextFlight.startTime - gameState.time)} left)`;
         } else {
-            status = `Waiting at ${gameState.currentCity}`;
+            status = `Waiting in ${gameState.currentCity} with no flight booked yet`;
         }
     }
+
+    
     
     return (
       <div className="globe-map">
         <p>Map</p>
-        <p>{clockDisplayString(time)}</p>
+        <p>{clockDisplayString(gameState.time)}</p>
         <p>{status}</p>
         <div className="map-container">
             {cityButtons}

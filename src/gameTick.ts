@@ -66,7 +66,7 @@ export const initializeGameState = (startCity: string): GameState => {
         for(const route of cityData.connections) {
 
             //TODO this can get more sophisticated
-            let price = route.distance * 0.1;
+            let price = Math.round(route.distance * 0.1);
             //500 km/h, but add 15 minutes for taxiing
             let duration = (route.distance / 500 * 60) + 15;
 
@@ -91,7 +91,7 @@ export const initializeGameState = (startCity: string): GameState => {
 
     return {
         time: 0,
-        balance: 1000,
+        balance: 5000,
         currentCity: startCity,
         currentFlight: null,
         ticketedFlights: [],
