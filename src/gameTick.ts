@@ -1,5 +1,11 @@
 import citiesWithRoutes from './cities_with_routes.json';
 
+export const shortClockDisplayString = (time: number): string => {
+    const hours = Math.floor(time / 60) % 24;
+    const minutes = Math.floor(time % 60);
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+}
+
 export const clockDisplayString = (time: number): string => {
     const days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     const dayIndex = Math.floor(time / (24 * 60)) % 5; // 5 days in the game
@@ -67,23 +73,28 @@ export const initializeGameState = (startCity: string): GameState => {
 
             //TODO this can get more sophisticated
             let price = Math.round(route.distance * 0.1);
-            //500 km/h, but add 15 minutes for taxiing
-            let duration = (route.distance / 500 * 60) + 15;
+
+            const airplaneSpeed = 900;
+
+            //but add 15 minutes for taxiing
+            let duration = (route.distance / airplaneSpeed * 60) + 15;
 
             for(let day = 0; day < 5; day++) {
-                const departure = day * 24 * 60 + route.departure_time; // Departure time in minutes from the start of the game
-                const flightId = `${city.name}-${route.destination}-${departure}`;
+                for (const departureTime of route.departures) {
+                    const departure = day * 24 * 60 + departureTime; // Departure time in minutes from the start of the game
+                    const flightId = `${city.name}-${route.destination}-${departure}`;
 
-                const flight: Flight = {
-                    id: flightId,
-                    startCity: city.name,
-                    endCity: route.destination,
-                    price: price,
-                    duration: duration,
-                    startTime: departure
-                };
-                city.flights.push(flight);
-                flightMap[flightId] = flight;
+                    const flight: Flight = {
+                        id: flightId,
+                        startCity: city.name,
+                        endCity: route.destination,
+                        price: price,
+                        duration: duration,
+                        startTime: departure
+                    };
+                    city.flights.push(flight);
+                    flightMap[flightId] = flight;
+                }
             }
 
         }

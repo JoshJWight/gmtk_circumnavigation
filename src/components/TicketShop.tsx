@@ -1,7 +1,7 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import './TicketShop.css';
 import type {GameState} from '../gameTick';
-import {durationDisplayString, clockDisplayString} from '../gameTick';
+import {durationDisplayString, clockDisplayString, shortClockDisplayString} from '../gameTick';
 import { useGameState } from '../gameContext';
 
 export const TicketShop: React.FC<{ gameState: GameState; updateGameState: (newState: Partial<GameState>) => void }> = ({ gameState, updateGameState}) => {
@@ -45,7 +45,7 @@ export const TicketShop: React.FC<{ gameState: GameState; updateGameState: (newS
                             disabled={gameState.ticketedFlights.includes(flight.id)} 
                             onClick={buyTicket.bind(null, flight.id)}
                         >
-                            {clockDisplayString(flight.startTime)}
+                            {shortClockDisplayString(flight.startTime)}
                         </button>
                     </div>
                 ))}

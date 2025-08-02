@@ -10,6 +10,15 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         updateGameState({ selectedCity: cityName });
     }
 
+    const currentTickets = gameState.ticketedFlights.map((flightId) => {
+        const flight = gameState.flightMap[flightId];
+        return (
+            <div key={flightId} className="ticket">
+                <p>{flight.startCity} to {flight.endCity} {clockDisplayString(flight.startTime)} - {clockDisplayString(flight.startTime + flight.duration)}</p>
+            </div>
+        );
+    })
+
     const cityButtons = gameState.cities.map((city, index) => (
         <button 
             key={index} 
@@ -51,6 +60,7 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         <p>Map</p>
         <p>{clockDisplayString(gameState.time)}</p>
         <p>{status}</p>
+        {currentTickets}
         <div className="map-container">
             {cityButtons}
         </div>

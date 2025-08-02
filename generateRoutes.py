@@ -95,13 +95,17 @@ if __name__ == "__main__":
 
     distances = distanceMatrix(cities_data)
 
+    departuresPerDay = 5
+
     for city in cities_data:
         connections = []
         for i, connected_city in enumerate(city['connections']):
+            firstDeparture = random.randint(0, 400)
+            departures = [firstDeparture + i * floor(1440 / departuresPerDay) for i in range(departuresPerDay)]
             connections.append({
                 'destination': connected_city,
                 'distance': distances[city_name_to_index[city['name']]][city_name_to_index[connected_city]],
-                'departure_time': floor(i * 1440 / len(city['connections']))
+                'departures': departures
             })
         city['connections'] = connections
 
