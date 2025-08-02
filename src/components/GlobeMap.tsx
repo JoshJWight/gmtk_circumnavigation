@@ -10,6 +10,7 @@ type MarkerData = {
     lng: number;
     size: number;
     color: string;
+    cityName: string;
 };
 
 export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newState: Partial<GameState>) => void }> = ({ gameState, updateGameState}) => {
@@ -70,14 +71,14 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         <circle fill="black" cx="14" cy="14" r="7"></circle>
     </svg>`;
 
-    // Gen random data
-    const N = 30;
-    const gData: MarkerData[] = Array.from(Array(N).keys()).map(() => ({
-        lat: (Math.random() - 0.5) * 180,
-        lng: (Math.random() - 0.5) * 360,
-        size: 7 + Math.random() * 30,
-        color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
+    const gData: MarkerData[] = gameState.cities.map(city => ({
+        lat: city.latitude,
+        lng: city.longitude,
+        size: 30,
+        color: 'yellow',
+        cityName: city.name
     }));
+
         
     return (
       <div className="globe-map">
@@ -106,7 +107,7 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
                 return el;
             }}
             htmlElementVisibilityModifier={(el, isVisible) => el.style.opacity = isVisible ? '1' : '0'}
-        />
+            />
         </div>
       </div>
     );
