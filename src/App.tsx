@@ -1,10 +1,18 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import './App.css';
 import GameComponent from './components/GameComponent';
+import CustomGame from './components/CustomGame';
+import type {Settings} from './gameTick';
 
 function App(): JSX.Element {
   const [state, setState] = useState<string>("menu");
   const [resultMessage, setResultMessage] = useState<string>("");
+  const [settings, setSettings] = useState<Settings>({
+    startCity: "London",
+    startBudget: 5000,
+    timeLimit: 24 * 60 * 4
+  });
+
   if(state === "menu") {
     return (
       <div className="App">
@@ -19,6 +27,9 @@ function App(): JSX.Element {
             <div>
               <button onClick={() => setState("game")}>Start Game</button>
             </div>
+            <div>
+              <button onClick={() => setState("customgame")}>Custom Game</button>
+            </div>
           </div>
         </main>
       </div>
@@ -27,7 +38,7 @@ function App(): JSX.Element {
     return (
       <div className="App">
         <main>
-          <GameComponent setAppState={setState} setResultMessage={setResultMessage}/>
+          <GameComponent settings={settings} setAppState={setState} setResultMessage={setResultMessage}/>
         </main>
       </div>
     );
@@ -63,6 +74,14 @@ function App(): JSX.Element {
           <p>When one of your booked flights departs, you will automatically take it.</p>
           <p>Time is always ticking. While you wait for your flight, you can look ahead to other cities, plan your route, and buy tickets in advance.</p>
           <button onClick={() => setState("menu")}>Return to Menu</button>
+        </main>
+      </div>
+    );
+  } else if (state === "customgame") {
+    return (
+      <div className="App">
+        <main>
+          <CustomGame settings={settings} setAppState={setState} setSettings={setSettings}/>
         </main>
       </div>
     );

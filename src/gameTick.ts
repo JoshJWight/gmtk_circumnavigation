@@ -9,8 +9,8 @@ export const shortClockDisplayString = (time: number): string => {
 }
 
 export const clockDisplayString = (time: number): string => {
-    const days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-    const dayIndex = Math.floor(time / (24 * 60)) % 5; // 5 days in the game
+    const days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "Monday", "Tuesday"];
+    const dayIndex = Math.floor(time / (24 * 60)) % 7;
     const hours = Math.floor(time / 60) % 24;
     const minutes = Math.floor(time % 60);
     return `${days[dayIndex]} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
@@ -20,6 +20,12 @@ export const durationDisplayString = (time: number): string => {
     const hours = Math.floor(time / 60);
     const minutes = Math.floor(time % 60);
     return `${hours}h ${minutes}m`;
+}
+
+export type Settings = {
+    startCity: string; // The city where the player starts the game
+    startBudget: number; // The budget at the start of the game
+    timeLimit: number; // The time limit for the game in minutes
 }
 
 // In game data types
@@ -64,7 +70,7 @@ export type GameState = {
     startBudget: number; //The budget at the start of the game
   };
 
-export const initializeGameState = (startCity: string): GameState => {
+export const initializeGameState = (settings: Settings): GameState => {
     const cities: City[] = [];
     const flightMap: Record<string, Flight> = {};
 
@@ -109,23 +115,23 @@ export const initializeGameState = (startCity: string): GameState => {
     }
 
     const startTime = 18 * 60; // 6 PM UK time on Wednesday
-    const deadline = startTime + (4 * 24 * 60); // 4 days later in minutes
+    const deadline = startTime + settings.timeLimit;
 
     return {
         time: startTime, //The jam started at 6pm UK time on wednesday
-        balance: 5000,
-        currentCity: startCity,
+        balance: settings.startBudget,
+        currentCity: settings.startCity,
         currentFlight: null,
         ticketedFlights: [],
         cities,
         flightMap,
-        selectedCity: startCity,
+        selectedCity: settings.startCity,
         simSpeed: 1,
         deadline: deadline , //4 days in minutes
         cumulativeLongitude: 0, //This will be used to determine if the player has circumnavigated the globe
-        startCity: startCity,
+        startCity: settings.startCity,
         startTime: startTime,
-        startBudget: 5000
+        startBudget: settings.startBudget
     };
 }
 
