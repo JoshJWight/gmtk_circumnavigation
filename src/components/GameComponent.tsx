@@ -20,10 +20,10 @@ export const GameComponent: React.FC<React.PropsWithChildren> = ({  }) => {
   }, []);
 
   return (
-    <GameContext.Provider value={state}>
-      <GlobeMap />
-      <TicketShop />
-    </GameContext.Provider>
+    <div>
+      <GlobeMap gameState={state} time={state.time}/>
+      <TicketShop gameState={state} time={state.time}/>
+    </div>
   );
 };
 

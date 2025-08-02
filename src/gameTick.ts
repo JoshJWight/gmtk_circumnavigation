@@ -16,7 +16,7 @@ export const durationDisplayString = (time: number): string => {
 
 // In game data types
 
-type Flight = {
+export type Flight = {
     id: string;
     startCity: string;
     endCity: string;
@@ -25,14 +25,14 @@ type Flight = {
     startTime: number;
   }
   
-  type City = {
+export type City = {
     name: string;
     latitude: number;
     longitude: number;
     flights: Flight[];
   }
   
-  type GameState = {
+export type GameState = {
     time: number; //In-universe minutes
     balance: number;
   
@@ -136,5 +136,4 @@ const gameTick = (state: GameState): GameState => {
     return state;
 }
 
-export type { GameState };
 export default gameTick;
