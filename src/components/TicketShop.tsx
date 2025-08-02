@@ -11,6 +11,14 @@ export const TicketShop: React.FC<{ gameState: GameState; updateGameState: (newS
         flight => flight.startTime > gameState.time && flight.startTime <= gameState.time + 1440
     );
 
+    const flightsByDestination = filteredFlights.reduce<Record<string, typeof filteredFlights>>((acc, flight) => {
+        if (!acc[flight.endCity]) {
+            acc[flight.endCity] = [];
+        }
+        acc[flight.endCity].push(flight);
+        return acc;
+    }, {});
+
     const buyTicket = (flightId: string) => {
         const flight = gameState.flightMap[flightId];
         if (!flight) return;
@@ -25,18 +33,23 @@ export const TicketShop: React.FC<{ gameState: GameState; updateGameState: (newS
         }
     }
 
-    const ticketElements = filteredFlights.map((flight, index) => (
-        <div key={index} className="flight">
-            <p>Destination: {flight.endCity}</p>
-            <p>Cost: ${flight.price.toFixed(2)}</p>
-            <p>Departure: {clockDisplayString(flight.startTime)} Time to departure: {durationDisplayString(flight.startTime - gameState.time)}</p>
-            <p>Duration: {durationDisplayString(flight.duration)}</p>
-            <button 
-                disabled={gameState.ticketedFlights.includes(flight.id)} 
-                onClick={buyTicket.bind(null, flight.id)}
-            >
-                Buy Ticket
-            </button>
+    const ticketElements = Object.keys(flightsByDestination).map((destination, index) => (
+        <div key={index} className="destination-group">
+            <p>Destination: {destination}</p>
+            <p>Cost: ${flightsByDestination[destination][0].price}</p>
+            <p>Duration: {durationDisplayString(flightsByDestination[destination][0].duration)}</p>
+            <div className="flights">
+                {flightsByDestination[destination].map(flight => (
+                    <div key={flight.id} className="flight">
+                        <button 
+                            disabled={gameState.ticketedFlights.includes(flight.id)} 
+                            onClick={buyTicket.bind(null, flight.id)}
+                        >
+                            {clockDisplayString(flight.startTime)}
+                        </button>
+                    </div>
+                ))}
+            </div>
         </div>
     ));
     

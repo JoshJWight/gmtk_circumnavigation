@@ -25,7 +25,7 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
     let status = '';
     if(gameState.currentFlight) {
         const flight = gameState.flightMap[gameState.currentFlight];
-        status = `Flying to ${flight.endCity} (${durationDisplayString(flight.startTime + flight.duration - gameState.time)} left)`;
+        status = `Flying to ${flight.endCity} (${durationDisplayString(flight.startTime + flight.duration - gameState.time)} left, arrive at ${clockDisplayString(flight.startTime + flight.duration)})`;
     }
     else{
         let nextFlight: Flight | null = null;
@@ -38,7 +38,7 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
             }
         }
         if(nextFlight) {
-            status = `In ${gameState.currentCity}, waiting for flight to ${nextFlight.endCity} at ${clockDisplayString(nextFlight.startTime)} (${durationDisplayString(nextFlight.startTime - gameState.time)} left)`;
+            status = `In ${gameState.currentCity}, waiting for flight to ${nextFlight.endCity} at ${clockDisplayString(nextFlight.startTime)} (${durationDisplayString(nextFlight.startTime - gameState.time)} until departure, arrives at ${clockDisplayString(nextFlight.startTime + nextFlight.duration)})`;
         } else {
             status = `Waiting in ${gameState.currentCity} with no flight booked yet`;
         }

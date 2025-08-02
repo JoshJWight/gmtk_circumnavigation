@@ -4,7 +4,7 @@ export const clockDisplayString = (time: number): string => {
     const days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
     const dayIndex = Math.floor(time / (24 * 60)) % 5; // 5 days in the game
     const hours = Math.floor(time / 60) % 24;
-    const minutes = time % 60;
+    const minutes = Math.floor(time % 60);
     return `${days[dayIndex]} ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 }
 
