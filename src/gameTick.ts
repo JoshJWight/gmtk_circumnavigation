@@ -1,5 +1,7 @@
 import citiesWithRoutes from './cities_with_routes.json';
 
+export const baseCityData = citiesWithRoutes;
+
 export const shortClockDisplayString = (time: number): string => {
     const hours = Math.floor(time / 60) % 24;
     const minutes = Math.floor(time % 60);

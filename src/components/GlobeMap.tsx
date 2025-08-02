@@ -2,8 +2,8 @@ import React, {createContext, useContext, useEffect, useState} from 'react';
 import Globe from 'react-globe.gl';
 import './GlobeMap.css';
 import type {GameState, Flight} from '../gameTick';
+import {baseCityData} from '../gameTick';
 import {durationDisplayString, clockDisplayString} from '../gameTick';
-import { useGameState, GameContext } from '../gameContext';
 
 type MarkerData = {
     lat: number;
@@ -16,6 +16,7 @@ type MarkerData = {
 export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newState: Partial<GameState>) => void }> = ({ gameState, updateGameState}) => {
 
     const selectCity = (cityName: string) => {
+        console.log(`Selecting city: ${cityName}`);
         updateGameState({ selectedCity: cityName });
     }
 
@@ -27,18 +28,6 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
             </div>
         );
     })
-
-    const cityButtons = gameState.cities.map((city, index) => (
-        <button 
-            key={index} 
-            className={`city-button ${gameState.selectedCity === city.name ? 'selected' : ''}`}
-            onClick={() => {
-                selectCity(city.name);
-            }}
-        >
-            {city.name}
-        </button>
-    ));
 
     let status = '';
     if(gameState.currentFlight) {
@@ -71,10 +60,10 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         <circle fill="black" cx="14" cy="14" r="7"></circle>
     </svg>`;
 
-    const gData: MarkerData[] = gameState.cities.map(city => ({
+    const gData: MarkerData[] = baseCityData.map(city => ({
         lat: city.latitude,
         lng: city.longitude,
-        size: 30,
+        size: 50,
         color: 'yellow',
         cityName: city.name
     }));
@@ -89,21 +78,22 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         <p>{status}</p>
         {currentTickets}
         <div className="map-container">
-            {cityButtons}
             <Globe
+            width={1920 * 0.7}
+            height={1000}
             globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg"
             htmlElementsData={gData}
             htmlElement={(d: object) => {
                 const markerData = d as MarkerData;
                 const el = document.createElement('div');
-                el.innerHTML = markerSvg;
+                el.innerHTML = `<p>${markerData.cityName}</p>`;
                 el.style.color = markerData.color;
                 el.style.width = `${markerData.size}px`;
                 el.style.transition = 'opacity 250ms';
 
                 el.style.setProperty('pointer-events', 'auto');
                 el.style.cursor = 'pointer';
-                el.onclick = () => console.info(markerData);
+                el.onclick = () => selectCity(markerData.cityName);
                 return el;
             }}
             htmlElementVisibilityModifier={(el, isVisible) => el.style.opacity = isVisible ? '1' : '0'}

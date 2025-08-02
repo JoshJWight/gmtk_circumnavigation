@@ -1,0 +1,10 @@
+.globe-map .map-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.globe-map .map-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+}
