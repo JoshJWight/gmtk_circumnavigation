@@ -55,12 +55,16 @@ export const TicketShop: React.FC<{ gameState: GameState; updateGameState: (newS
     
     return (
       <div className="ticket-shop">
-        <p>Buy Tickets From {gameState.selectedCity}</p>
-        <div className="balance">
-          <p>Balance: ${Math.round(gameState.balance)}</p>
+        <div className="ticket-shop-header">
+          <h2>Buy Tickets From {gameState.selectedCity}</h2>
+          <div className="balance">
+            <p>Balance: ${Math.round(gameState.balance)}</p>
+          </div>
         </div>
-        <div className="tickets">
-          {ticketElements.length > 0 ? ticketElements : <p>No flights available</p>}
+        <div className="ticket-shop-content">
+          <div className="tickets">
+            {ticketElements.length > 0 ? ticketElements : <p>No flights available</p>}
+          </div>
         </div>
       </div>
     );
