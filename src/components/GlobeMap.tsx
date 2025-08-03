@@ -201,7 +201,7 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
             }}
             htmlElementVisibilityModifier={(el, isVisible) => el.style.opacity = isVisible ? '1' : '0'}
             arcsData={arcsData}
-            arcAltitude={0.08}
+            arcAltitude={0.12}
             //Labels cause runtime errors for some reason
             //labelsData={labelsData}
             //labelLat={playerLocation.latitude}
