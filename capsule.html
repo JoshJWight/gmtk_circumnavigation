@@ -34,8 +34,8 @@
         
         .text-container {
             position: relative;
-            width: 800px;
-            height: 400px;
+            width: 90vw;
+            height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -54,12 +54,18 @@
         
         .curved-text text {
             font-family: 'Fredoka One', cursive;
-            font-size: 48px;
             font-weight: 400;
             fill: #4A90E2;
             stroke: #2E5BBA;
-            stroke-width: 2;
-            filter: drop-shadow(0 0 10px rgba(74, 144, 226, 0.6));
+            stroke-width: 3;
+        }
+        
+        .top-text {
+            font-size: 6vw;
+        }
+        
+        .bottom-text {
+            font-size: 6vw;
         }
         
     </style>
@@ -68,17 +74,17 @@
     <div class="container">
         <div class="text-container">
             <div class="curved-text">
-                <svg viewBox="0 0 800 400">
+                <svg viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet">
                     <defs>
-                        <path id="top-curve" d="M 100 180 Q 400 80 700 180" />
-                        <path id="bottom-curve" d="M 150 280 Q 400 220 650 280" />
+                        <path id="top-curve" d="M 50 180 Q 500 60 950 180" />
+                        <path id="bottom-curve" d="M 150 280 Q 500 200 850 280" />
                     </defs>
-                    <text font-size="42">
+                    <text class="top-text">
                         <textPath href="#top-curve" startOffset="50%" text-anchor="middle">
                             Around the World
                         </textPath>
                     </text>
-                    <text font-size="36">
+                    <text class="bottom-text">
                         <textPath href="#bottom-curve" startOffset="50%" text-anchor="middle">
                             in 96 Hours
                         </textPath>
