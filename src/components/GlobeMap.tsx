@@ -4,6 +4,7 @@ import './GlobeMap.css';
 import type {GameState, Flight} from '../gameTick';
 import {baseCityData} from '../gameTick';
 import {durationDisplayString, clockDisplayString} from '../gameTick';
+import { distance, greatCircle, along, feature, lineString } from '@turf/turf';
 
 type MarkerData = {
     lat: number;
@@ -90,6 +91,23 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         lat: gameState.currentCity ? baseCityData.find(city => city.name === gameState.currentCity)?.latitude || 0 : 0,
         lng: gameState.currentCity ? baseCityData.find(city => city.name === gameState.currentCity)?.longitude || 0 : 0,
         label: ""
+    }
+
+    if(gameState.currentFlight) {
+        const flight = gameState.flightMap[gameState.currentFlight];
+        const fractionAlong = (gameState.time - flight.startTime) / flight.duration;
+        const startCity = baseCityData.find(city => city.name === flight.startCity);
+        const endCity = baseCityData.find(city => city.name === flight.endCity);
+        
+        if (startCity && endCity) {
+            const startPoint = [startCity.longitude, startCity.latitude];
+            const endPoint = [endCity.longitude, endCity.latitude];
+            const distkm = distance(startPoint, endPoint, { units: 'kilometers' });
+            const line = greatCircle(startPoint, endPoint, { npoints: 100 });
+            const pointAlong = along(line, distkm * fractionAlong);
+            playerLocation.lat = pointAlong.geometry.coordinates[1];
+            playerLocation.lng = pointAlong.geometry.coordinates[0];
+        }
     }
 
     gData.push({
