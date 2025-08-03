@@ -170,7 +170,7 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
             <Globe
             width={window.innerWidth * 0.8}
             height={window.innerHeight}
-            globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg"
+            globeImageUrl="./assets/earth-dark.jpg"
             htmlElementsData={gData}
             htmlElement={(d: object) => {
                 const markerData = d as MarkerData;
