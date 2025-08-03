@@ -18,18 +18,10 @@ function App(): JSX.Element {
       <div className="App">
         <main>
           <div className="mainmenu">
-            <div>
-              <h1>Around the World in 96 Hours</h1>
-            </div>
-            <div>
-              <button onClick={() => setState("howtoplay")}>How to Play</button>
-            </div>
-            <div>
-              <button onClick={() => setState("game")}>Start Game</button>
-            </div>
-            <div>
-              <button onClick={() => setState("customgame")}>Custom Game</button>
-            </div>
+            <h1>Around the World in 96 Hours</h1>
+            <button onClick={() => setState("howtoplay")}>How to Play</button>
+            <button onClick={() => setState("game")}>Start Game</button>
+            <button onClick={() => setState("customgame")}>Custom Game</button>
           </div>
         </main>
       </div>
@@ -46,9 +38,11 @@ function App(): JSX.Element {
     return (
       <div className="App">
         <main>
-          <h1>Game Over</h1>
-          <p>{resultMessage}</p>
-          <button onClick={() => setState("menu")}>Return to Menu</button>
+          <div className="menu-page">
+            <h1>Game Over</h1>
+            <p>{resultMessage}</p>
+            <button onClick={() => setState("menu")}>Return to Menu</button>
+          </div>
         </main>
       </div>
     );
@@ -56,9 +50,11 @@ function App(): JSX.Element {
     return (
       <div className="App">
         <main>
-          <h1>Successful Circumnavigation!</h1>
-          <p>{resultMessage}</p>
-          <button onClick={() => setState("menu")}>Return to Menu</button>
+          <div className="menu-page">
+            <h1>Successful Circumnavigation!</h1>
+            <p>{resultMessage}</p>
+            <button onClick={() => setState("menu")}>Return to Menu</button>
+          </div>
         </main>
       </div>
     );
@@ -66,14 +62,18 @@ function App(): JSX.Element {
     return (
       <div className="App">
         <main>
-          <h1>How to Play</h1>
-          <p>Your goal in this game is to circumnavigate the world and return to the city you started in.</p>
-          <p>Both westwards and eastwards circumnavigations are valid.</p>
-          <p>Click a city on the map to open its shop where you can buy flights.</p>
-          <p>Click a time for a flight in the shop to buy it.</p>
-          <p>When one of your booked flights departs, you will automatically take it.</p>
-          <p>Time is always ticking. While you wait for your flight, you can look ahead to other cities, plan your route, and buy tickets in advance.</p>
-          <button onClick={() => setState("menu")}>Return to Menu</button>
+          <div className="menu-page">
+            <h1>How to Play</h1>
+            <div className="instructions">
+              <p>Your goal in this game is to circumnavigate the world and return to the city you started in.</p>
+              <p>Both westwards and eastwards circumnavigations are valid.</p>
+              <p>Click a city on the map to open its shop where you can buy flights.</p>
+              <p>Click a time for a flight in the shop to buy it.</p>
+              <p>When one of your booked flights departs, you will automatically take it.</p>
+              <p>Time is always ticking. While you wait for your flight, you can look ahead to other cities, plan your route, and buy tickets in advance.</p>
+            </div>
+            <button onClick={() => setState("menu")}>Return to Menu</button>
+          </div>
         </main>
       </div>
     );
@@ -90,7 +90,9 @@ function App(): JSX.Element {
     return (
       <div className="App">
         <main>
-          <h1>Unknown state: {state}</h1>
+          <div className="menu-page">
+            <h1>Unknown state: {state}</h1>
+          </div>
         </main>
       </div>
     );
