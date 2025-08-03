@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Around the World<nbsp/>in 96 Hours</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Fredoka One', cursive;
+        }
+        
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('./public/assets/earth-dark.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .text-container {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .curved-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .curved-text svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .curved-text text {
+            font-family: 'Fredoka One', cursive;
+            font-size: 48px;
+            font-weight: 400;
+            fill: #4A90E2;
+            stroke: #2E5BBA;
+            stroke-width: 2;
+            filter: drop-shadow(0 0 10px rgba(74, 144, 226, 0.6));
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-container">
+            <div class="curved-text">
+                <svg viewBox="0 0 800 400">
+                    <defs>
+                        <path id="top-curve" d="M 100 180 Q 400 80 700 180" />
+                        <path id="bottom-curve" d="M 150 280 Q 400 220 650 280" />
+                    </defs>
+                    <text font-size="42">
+                        <textPath href="#top-curve" startOffset="50%" text-anchor="middle">
+                            Around the World
+                        </textPath>
+                    </text>
+                    <text font-size="36">
+                        <textPath href="#bottom-curve" startOffset="50%" text-anchor="middle">
+                            in 96 Hours
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
