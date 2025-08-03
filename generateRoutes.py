@@ -196,16 +196,43 @@ if __name__ == "__main__":
 
     distances = distanceMatrix(cities_data)
 
-    departuresPerDay = 5
+    def departuresForDistance(distance):
+        if distance < 1000:
+            return 10
+        elif distance < 2000:
+            return 8
+        elif distance < 3000:
+            return 6
+        elif distance < 4000:
+            return 4
+        elif distance < 5000:
+            return 3
+        elif distance < 6000:
+            return 2
+        else:
+            return 1
 
     for city in cities_data:
         connections = []
         for i, connected_city in enumerate(city['connections']):
-            firstDeparture = random.randint(0, 400)
-            departures = [firstDeparture + i * floor(1440 / departuresPerDay) for i in range(departuresPerDay)]
+            distance = distances[city_name_to_index[city['name']]][city_name_to_index[connected_city]]
+            n_departures = departuresForDistance(distance)
+            guaranteedInterval = 1440 / (n_departures+1) / 2
+            splitRemainder = 1440 - (guaranteedInterval * (n_departures+1))
+            splits = [random.random() for _ in range(n_departures)]
+            splits.append(0)
+            splits.sort()
+            departures = []
+            sum = 0
+            for i in range(n_departures):
+                fractionOfRemainder = splits[i+1]-splits[i]
+                sum += fractionOfRemainder * splitRemainder + guaranteedInterval
+                departures.append(sum)
+
+            sum = 0
             connections.append({
                 'destination': connected_city,
-                'distance': distances[city_name_to_index[city['name']]][city_name_to_index[connected_city]],
+                'distance': distance,
                 'departures': departures
             })
         city['connections'] = connections
