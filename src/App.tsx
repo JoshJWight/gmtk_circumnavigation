@@ -72,6 +72,7 @@ function App(): JSX.Element {
               <p>The shop only shows flights for the next 24 hours.</p>
               <p>When one of your booked flights departs, you will automatically take it if you are in the right city.</p>
               <p>Time is always ticking. While you wait for your flight, you can look ahead to other cities, plan your route, and buy tickets in advance.</p>
+              <p>If your route is set for the next while, you can speed up time with the 5x Speed button in the top left.</p>
             </div>
             <button onClick={() => setState("menu")}>Return to Menu</button>
           </div>
