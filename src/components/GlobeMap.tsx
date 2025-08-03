@@ -104,7 +104,10 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
             const endPoint = [endCity.longitude, endCity.latitude];
             const distkm = distance(startPoint, endPoint, { units: 'kilometers' });
             const line = greatCircle(startPoint, endPoint, { npoints: 100 });
-            const pointAlong = along(line, distkm * fractionAlong);
+            // Handle potential MultiLineString by taking the first LineString
+            const geometry = line.geometry.type === 'LineString' ? line.geometry : line.geometry.coordinates[0];
+            const lineStringGeometry = line.geometry.type === 'LineString' ? line.geometry : lineString(line.geometry.coordinates[0]).geometry;
+            const pointAlong = along(lineStringGeometry, distkm * fractionAlong);
             playerLocation.lat = pointAlong.geometry.coordinates[1];
             playerLocation.lng = pointAlong.geometry.coordinates[0];
         }
