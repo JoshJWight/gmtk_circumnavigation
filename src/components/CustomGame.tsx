@@ -13,7 +13,13 @@ export const CustomGame: React.FC<{settings: Settings, setAppState:(newState: st
             }}>
               <label>
                 Start City:
-                <input type="text" value={settings.startCity} onChange={(e) => setSettings({...settings, startCity: e.target.value})} />
+                <select value={settings.startCity} onChange={(e) => setSettings({...settings, startCity: e.target.value})}>
+                  {baseCityData.map((city) => (
+                    <option key={city.name} value={city.name}>
+                      {city.name}
+                    </option>
+                  ))}
+                </select>
               </label>
               <br />
               <label>
