@@ -2,6 +2,7 @@
   "name": "gmtk-circumnavigation",
   "version": "1.0.0",
   "description": "A game about circumnavigating the earth - GMTK Game Jam 2025",
+  "homepage": "./",
   "main": "public/electron.js",
   "scripts": {
     "start": "react-scripts start",
