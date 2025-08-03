@@ -5,16 +5,14 @@
   gap: 25px;
   max-width: 500px;
   padding: 40px 30px;
-  background: linear-gradient(135deg, #2d5a87 0%, #4a6fa5 100%);
+  background: #4a6fa5;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   color: white;
 }
 
 .custom-game h1 {
   font-size: 2.5rem;
   margin: 0 0 20px 0;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   color: #61dafb;
   text-align: center;
 }
@@ -37,7 +35,6 @@
   font-size: 1.1rem;
   font-weight: bold;
   color: #ffffff;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .form-group input,
@@ -48,7 +45,6 @@
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.1);
   color: white;
-  transition: all 0.3s ease;
 }
 
 .form-group input::placeholder {
@@ -60,7 +56,6 @@
   outline: none;
   border-color: #61dafb;
   background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.2);
 }
 
 .form-group select option {
@@ -75,7 +70,7 @@
 }
 
 .custom-game button {
-  background: linear-gradient(45deg, #28a745, #20c997);
+  background: #20c997;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -84,26 +79,19 @@
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   min-width: 140px;
 }
 
 .custom-game button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(45deg, #218838, #1abc9c);
-}
-
-.custom-game button:active {
-  transform: translateY(0);
+  background: #1abc9c;
 }
 
 .custom-game button.secondary {
-  background: linear-gradient(45deg, #6c757d, #495057);
+  background: #495057;
 }
 
 .custom-game button.secondary:hover {
-  background: linear-gradient(45deg, #5a6268, #343a40);
+  background: #343a40;
 }
 
 .form-description {

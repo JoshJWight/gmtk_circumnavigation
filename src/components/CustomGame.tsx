@@ -7,9 +7,6 @@ export const CustomGame: React.FC<{settings: Settings, setAppState:(newState: st
     return (
         <div className="custom-game">
           <h1>Custom Game Settings</h1>
-          <p className="form-description">
-            Customize your circumnavigation challenge with your preferred starting city, budget, and time limit.
-          </p>
           <form className="custom-game-form" onSubmit={(e) => {
             e.preventDefault();
             setAppState("game");
