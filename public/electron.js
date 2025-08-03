@@ -14,11 +14,11 @@ function createWindow() {
   });
 
   // Load the app
-  mainWindow.loadURL(
-    isDev
-      ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`
-  );
+  const startUrl = isDev 
+    ? 'http://localhost:3000'
+    : `file://${path.join(__dirname, 'build/index.html')}`;
+  
+  mainWindow.loadURL(startUrl);
 
   // Open DevTools in development
   if (isDev) {
