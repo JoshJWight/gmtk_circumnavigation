@@ -67,9 +67,10 @@ function App(): JSX.Element {
             <div className="instructions">
               <p>Your goal in this game is to circumnavigate the world and return to the city you started in.</p>
               <p>Both westwards and eastwards circumnavigations are valid.</p>
-              <p>Click a city on the map to open its shop where you can buy flights.</p>
-              <p>Click a time for a flight in the shop to buy it.</p>
-              <p>When one of your booked flights departs, you will automatically take it.</p>
+              <p>Double-click a city on the map to open its shop where you can book tickets for flights.</p>
+              <p>Click a time for a flight in the shop to book it.</p>
+              <p>The shop only shows flights for the next 24 hours.</p>
+              <p>When one of your booked flights departs, you will automatically take it if you are in the right city.</p>
               <p>Time is always ticking. While you wait for your flight, you can look ahead to other cities, plan your route, and buy tickets in advance.</p>
             </div>
             <button onClick={() => setState("menu")}>Return to Menu</button>

@@ -84,13 +84,11 @@ export const initializeGameState = (settings: Settings): GameState => {
         cities.push(city);
 
         for(const route of cityData.connections) {
-
-            //TODO this can get more sophisticated
-            let price = Math.round(route.distance * 0.1);
+            let price = Math.round(route.distance * 0.1) + 50;
 
             const airplaneSpeed = 900;
 
-            //but add 15 minutes for taxiing
+            //add 15 minutes for taxiing
             let duration = (route.distance / airplaneSpeed * 60) + 15;
 
             for(let day = 0; day < 5; day++) {
@@ -161,7 +159,7 @@ const gameTick = (state: GameState, setAppState:(newState: string) => void, setR
             const startCity = state.cities.find(city => city.name === flight.startCity);
             const endCity = state.cities.find(city => city.name === flight.endCity);
             if(startCity && endCity) {
-                let longitudeChange = endCity.longitude;
+                let longitudeChange = endCity.longitude - startCity.longitude;
                 //Assuming that there is no single route covering more than 180 degrees of longitude...
                 if (longitudeChange < -180) {
                     longitudeChange += 360; // Normalize longitude to be within -180 to 180
@@ -187,7 +185,7 @@ const gameTick = (state: GameState, setAppState:(newState: string) => void, setR
         (flight) => flight.startTime > newTime && flight.price <= state.balance
       );
 
-    if((newCumulativeLongitude >= 300 || newCumulativeLongitude <= -300)) {
+    if((newCumulativeLongitude >= 300 || newCumulativeLongitude <= -300) && newCurrentCity === state.startCity) {
         let timeTaken = newTime - state.startTime;
         let moneyTaken = state.startBudget - state.balance;
         setResultMessage(`Completed your journey in ${durationDisplayString(timeTaken)} for $${Math.round(moneyTaken)}.`);

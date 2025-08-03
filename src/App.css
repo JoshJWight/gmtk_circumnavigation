@@ -39,7 +39,7 @@ main {
   gap: 20px;
   max-width: 600px;
   padding: 40px 20px;
-  background: #2a5298;
+  background: #0d44ac;
   border-radius: 15px;
   color: white;
 }
@@ -59,7 +59,7 @@ main {
 }
 
 .menu-page button {
-  background: #ee5a24;
+  background: #0197c0;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -71,11 +71,7 @@ main {
 }
 
 .menu-page button:hover {
-  background: #d63031;
-}
-
-.menu-page button:active {
-  transform: translateY(0);
+  background: #61dafb;
 }
 
 /* Main menu specific styling */
@@ -86,7 +82,7 @@ main {
   gap: 25px;
   max-width: 500px;
   padding: 50px 30px;
-  background: #667eea;
+  background: #0d44ac;
   border-radius: 20px;
 }
 
@@ -99,7 +95,7 @@ main {
 }
 
 .mainmenu button {
-  background:#4ecdc4;
+  background:#0197c0;
   color: white;
   border: none;
   padding: 15px 30px;
@@ -111,7 +107,7 @@ main {
 }
 
 .mainmenu button:hover {
-  background: #26d0ce;
+  background: #61dafb;
 }
 
 /* Instructions section */
