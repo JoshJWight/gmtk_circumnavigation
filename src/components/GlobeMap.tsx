@@ -201,18 +201,6 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
                     el.style.border = '1px solid rgba(255,255,255,0.3)';
 
                     el.style.setProperty('pointer-events', 'auto');
-                    el.style.cursor = 'pointer';
-                    
-                    // Stable hover effects without transform
-                    el.addEventListener('mouseenter', () => {
-                        el.style.backgroundColor = 'rgba(255,255,0,0.6)';
-                        el.style.borderColor = 'rgba(255,255,0,0.8)';
-                    });
-                    
-                    el.addEventListener('mouseleave', () => {
-                        el.style.backgroundColor = 'rgba(0,0,0,0.3)';
-                        el.style.borderColor = 'rgba(255,255,255,0.3)';
-                    });
                     
                     el.onclick = (e) => {
                         e.preventDefault();
