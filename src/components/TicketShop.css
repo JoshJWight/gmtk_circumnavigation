@@ -8,7 +8,7 @@
 .ticket-shop-header {
     position: sticky;
     top: 0;
-    background: #015064;
+    background: #0d44ac;
     z-index: 10;
     padding: 10px;
     border-bottom: 1px solid #0d44ac;
@@ -26,7 +26,7 @@
     padding: 15px;
     border: 1px solid #012d30;
     border-radius: 4px;
-    background: #217a7a;
+    background: #0d44ac;
 }
 
 .destination-info {
@@ -58,7 +58,7 @@
 }
 
 .destination-duration {
-    color: #0fac0f;
+    color: #2fdd2f;
 }
 
 .flights {
@@ -74,7 +74,7 @@
     padding: 8px 12px;
     border: 1px solid #5f530e;
     border-radius: 4px;
-    background: #ffcc00;
+    background: #ddaa00;
     cursor: pointer;
     transition: background-color 0.2s;
 }

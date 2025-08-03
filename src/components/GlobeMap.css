@@ -78,10 +78,17 @@
   color: #61dafb;
 }
 
+.game-deadline {
+  font-size: 14px;
+  color: #b1bb2a;
+  margin-bottom: 10px;
+}
+
 .game-status {
   font-size: 14px;
   line-height: 1.4;
   max-width: 350px;
+  color: #61dafb;
 }
 
 .current-tickets h4 {

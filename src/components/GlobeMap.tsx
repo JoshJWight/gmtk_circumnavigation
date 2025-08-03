@@ -37,7 +37,8 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
         const flight = gameState.flightMap[flightId];
         return (
             <div key={flightId} className="ticket">
-                <p>{flight.startCity} to {flight.endCity} {clockDisplayString(flight.startTime)} - {clockDisplayString(flight.startTime + flight.duration)}</p>
+                <p>{flight.startCity} - {flight.endCity}</p>
+                <p>{clockDisplayString(flight.startTime)} - {clockDisplayString(flight.startTime + flight.duration)}</p>
             </div>
         );
     })
@@ -128,6 +129,7 @@ export const GlobeMap: React.FC<{ gameState: GameState; updateGameState: (newSta
             <button onClick={() => setSimSpeed(5)} className={gameState.simSpeed === 5 ? 'active' : ''}>5x Speed</button>
           </div>
           <div className="game-time">{clockDisplayString(gameState.time)}</div>
+          <div className="game-deadline">Circumnavigate back to {gameState.startCity} by {clockDisplayString(gameState.deadline)}</div>
           <div className="game-status">
             <p>{statusLine1}</p>
             <p>{statusLine2}</p>
